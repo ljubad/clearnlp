@@ -46,7 +46,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
+import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import com.clearnlp.classification.instance.StringInstance;
 import com.clearnlp.classification.model.StringModel;
@@ -72,9 +72,9 @@ public class StringTrainSpace extends AbstractTrainSpace
 	/** The list of all training instances. */
 	private List<StringInstance> s_instances;
 	/** The map between labels and their counts. */
-	private ObjectIntOpenHashMap<String> m_labels;
+	private ObjectIntHashMap<String> m_labels;
 	/** The map between features and their counts. */
-	private Map<String,ObjectIntOpenHashMap<String>> m_features;
+	private Map<String,ObjectIntHashMap<String>> m_features;
 	
 	/**
 	 * Constructs a train space containing string vectors.
@@ -90,7 +90,7 @@ public class StringTrainSpace extends AbstractTrainSpace
 		l_cutoff    = labelCutoff;
 		f_cutoff    = featureCutoff;
 		s_instances = Lists.newArrayList();
-		m_labels    = new ObjectIntOpenHashMap<String>();
+		m_labels    = new ObjectIntHashMap<String>();
 		m_features  = Maps.newHashMap();
 	}
 	
@@ -143,7 +143,7 @@ public class StringTrainSpace extends AbstractTrainSpace
 	
 	private void appendSpaceLabels(StringTrainSpace space)
 	{
-		ObjectIntOpenHashMap<String> mLabels = space.m_labels;
+		ObjectIntHashMap<String> mLabels = space.m_labels;
 		String label;
 		
 		for (ObjectCursor<String> cur : mLabels.keys())
@@ -155,8 +155,8 @@ public class StringTrainSpace extends AbstractTrainSpace
 	
 	private void appendSpaceFeatures(StringTrainSpace space)
 	{
-		Map<String,ObjectIntOpenHashMap<String>> mFeatures = space.m_features;
-		ObjectIntOpenHashMap<String> tMap, sMap;
+		Map<String,ObjectIntHashMap<String>> mFeatures = space.m_features;
+		ObjectIntHashMap<String> tMap, sMap;
 		String value;
 		
 		for (String type : mFeatures.keySet())
@@ -203,7 +203,7 @@ public class StringTrainSpace extends AbstractTrainSpace
 	
 	private void addLexicaFeatures(StringFeatureVector vector)
 	{
-		ObjectIntOpenHashMap<String> map;
+		ObjectIntHashMap<String> map;
 		int i, size = vector.size();
 		String type, value;
 		
@@ -219,7 +219,7 @@ public class StringTrainSpace extends AbstractTrainSpace
 			}
 			else
 			{
-				map = new ObjectIntOpenHashMap<String>();
+				map = new ObjectIntHashMap<String>();
 				map.put(value, 1);
 				m_features.put(type, map);
 			}
@@ -284,7 +284,7 @@ public class StringTrainSpace extends AbstractTrainSpace
 		s_model.initLabelArray();
 		
 		// initialize feature map
-		ObjectIntOpenHashMap<String> map;
+		ObjectIntHashMap<String> map;
 		String value;
 		
 		for (String type : m_features.keySet())
@@ -310,7 +310,7 @@ public class StringTrainSpace extends AbstractTrainSpace
 		
 		// initialize feature map
 		List<String> types = new ArrayList<String>(m_features.keySet());
-		ObjectIntOpenHashMap<String> map;
+		ObjectIntHashMap<String> map;
 		Collections.sort(types);
 		
 		for (String type : types)

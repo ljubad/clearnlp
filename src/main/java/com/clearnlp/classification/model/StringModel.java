@@ -47,7 +47,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
 import com.clearnlp.classification.prediction.StringPrediction;
 import com.clearnlp.classification.vector.SparseFeatureVector;
 import com.clearnlp.classification.vector.StringFeatureVector;
@@ -120,14 +119,14 @@ public class StringModel extends AbstractModel
 	{
 		SparseFeatureVector sparse = new SparseFeatureVector(vector.hasWeight());
 		int i, index, size = vector.size();
-		ObjectIntOpenHashMap<String> map;
+		com.carrotsearch.hppc.ObjectIntHashMap<String> map;
 		String type, value;
-		
+
 		for (i=0; i<size; i++)
 		{
 			type  = vector.getType(i);
 			value = vector.getValue(i);
-			
+
 			if ((map = m_features.get(type)) != null && (index = map.get(value)) > 0)
 			{
 				if (sparse.hasWeight())
@@ -136,16 +135,16 @@ public class StringModel extends AbstractModel
 					sparse.addFeature(index);
 			}
 		}
-		
+
 		sparse.trimToSize();
 		return sparse;
 	}
-	
+
 	public StringFeatureVector trimFeatures(StringFeatureVector oVector, String label, double threshold)
 	{
 		StringFeatureVector nVector = new StringFeatureVector(oVector.hasWeight());
 		int i, size = oVector.size(), fIndex, lIndex = getLabelIndex(label);
-		ObjectIntOpenHashMap<String> map;
+		com.carrotsearch.hppc.ObjectIntHashMap<String> map;
 		String type, value;
 		boolean add;
 		

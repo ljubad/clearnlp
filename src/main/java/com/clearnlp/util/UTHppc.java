@@ -46,14 +46,14 @@ import java.util.List;
 import java.util.Set;
 
 import com.carrotsearch.hppc.IntContainer;
-import com.carrotsearch.hppc.IntOpenHashSet;
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
+import com.carrotsearch.hppc.IntHashSet;
+import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import com.google.common.collect.Sets;
 
 public class UTHppc
 {
-	static public <T>Set<T> getKeySet(ObjectIntOpenHashMap<T> map)
+	static public <T>Set<T> getKeySet(ObjectIntHashMap<T> map)
 	{
 		Set<T> set = Sets.newHashSet();
 		
@@ -98,16 +98,16 @@ public class UTHppc
 		return true;
 	}
 	
-	static public IntOpenHashSet intersection(IntContainer c1, IntContainer c2)
+	static public IntHashSet intersection(IntContainer c1, IntContainer c2)
 	{
-		IntOpenHashSet s1 = new IntOpenHashSet(c1);
-		IntOpenHashSet s2 = new IntOpenHashSet(c2);
+		IntHashSet s1 = new IntHashSet(c1);
+		IntHashSet s2 = new IntHashSet(c2);
 		
 		s1.retainAll(s2);
 		return s1;
 	}
 	
-	static public List<String> getSortedKeys(ObjectIntOpenHashMap<String> map)
+	static public List<String> getSortedKeys(ObjectIntHashMap<String> map)
 	{
 		List<String> keys = new ArrayList<String>(map.size());
 		

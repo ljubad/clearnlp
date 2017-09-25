@@ -56,7 +56,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
+import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.clearnlp.constant.universal.UNPunct;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -205,9 +205,9 @@ public class UTInput
 		return map;
 	}
 	
-	static public ObjectIntOpenHashMap<String> getStringIntOpenHashMap(BufferedReader fin, String delim) throws Exception
+	static public ObjectIntHashMap<String> getStringIntOpenHashMap(BufferedReader fin, String delim) throws Exception
 	{
-		ObjectIntOpenHashMap<String> map = new ObjectIntOpenHashMap<String>();
+		ObjectIntHashMap<String> map = new ObjectIntHashMap<String>();
 		int i, size = Integer.parseInt(fin.readLine());
 		String[] tmp;
 		

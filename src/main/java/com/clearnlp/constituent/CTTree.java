@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.carrotsearch.hppc.IntObjectOpenHashMap;
+import com.carrotsearch.hppc.IntObjectHashMap;
 import com.clearnlp.propbank.PBLoc;
 
 
@@ -63,7 +63,7 @@ public class CTTree
 	/** Gets initialized by {@link CTTree#setTerminals()}. */
 	private List<CTNode> ls_tokens;
 	/** Gets initialized by {@link CTTree#linkCoIndexedEmtpyCategories()}. */
-	private IntObjectOpenHashMap<List<CTNode>> mp_nulls;
+	private IntObjectHashMap<List<CTNode>> mp_nulls;
 	
 	/**
 	 * Constructs a constituent tree using the specific root node.
@@ -114,7 +114,7 @@ public class CTTree
 	private void linkCoIndexedEmtpyCategories()
 	{
 		int idx, coIndex;
-		mp_nulls = new IntObjectOpenHashMap<List<CTNode>>();
+		mp_nulls = new IntObjectHashMap<List<CTNode>>();
 		
 		for (CTNode node : ls_termainals)
 		{

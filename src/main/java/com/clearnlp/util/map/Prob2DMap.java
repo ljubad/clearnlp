@@ -42,7 +42,6 @@ package com.clearnlp.util.map;
 
 import java.util.HashMap;
 
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import com.clearnlp.collection.map.ObjectIntHashMap;
 import com.clearnlp.util.pair.ObjectIntPair;
@@ -178,7 +177,7 @@ public class Prob2DMap extends HashMap<String,ObjectIntHashMap<String>>
 	
 	private Pair<Double,StringDoublePair[]> getProb1DAux(String key)
 	{
-		ObjectIntOpenHashMap<String> map = get(key);
+		ObjectIntHashMap<String> map = get(key);
 		if (map == null)	return null;
 		
 		StringDoublePair[] probs = new StringDoublePair[map.size()-1];

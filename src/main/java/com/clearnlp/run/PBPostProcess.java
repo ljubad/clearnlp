@@ -49,7 +49,7 @@ import java.util.Map;
 
 import org.kohsuke.args4j.Option;
 
-import com.carrotsearch.hppc.IntOpenHashSet;
+import com.carrotsearch.hppc.IntHashSet;
 import com.clearnlp.constituent.CTLib;
 import com.clearnlp.constituent.CTLibEn;
 import com.clearnlp.constituent.CTNode;
@@ -595,7 +595,7 @@ public class PBPostProcess extends AbstractRun
 	{
 		CTTree  tree = instance.getTree();
 		PBArg ai, aj;
-		IntOpenHashSet si, sj;
+		IntHashSet si, sj;
 		int i, j, size = instance.getArgSize(), ni, nj;
 		List<PBArg> lDel = new ArrayList<PBArg>();
 		
@@ -643,9 +643,9 @@ public class PBPostProcess extends AbstractRun
 	}
 	
 	/** Returns the set of terminal IDs associated with this argument. */
-	private IntOpenHashSet getTerminalIdSet(PBArg arg, CTTree tree)
+	private IntHashSet getTerminalIdSet(PBArg arg, CTTree tree)
 	{
-		IntOpenHashSet set = new IntOpenHashSet();
+		IntHashSet set = new IntHashSet();
 		
 		for (PBLoc loc : arg.getLocs())
 		{
@@ -760,8 +760,8 @@ public class PBPostProcess extends AbstractRun
 		Pair<CTNode,CTNode> pair = getESMPair(pred);
 		if (pair == null)	return null;
 		
-		Pair<PBArg,IntOpenHashSet> max = new Pair<PBArg,IntOpenHashSet>(null, new IntOpenHashSet());
-		IntOpenHashSet set;
+		Pair<PBArg,IntHashSet> max = new Pair<PBArg,IntHashSet>(null, new IntHashSet());
+		IntHashSet set;
 		CTNode prn = pair.o1;
 		CTNode esm = pair.o2;
 		

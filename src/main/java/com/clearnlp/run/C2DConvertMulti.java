@@ -51,8 +51,8 @@ import java.util.regex.Pattern;
 
 import org.kohsuke.args4j.Option;
 
-import com.carrotsearch.hppc.IntObjectOpenHashMap;
-import com.carrotsearch.hppc.IntOpenHashSet;
+import com.carrotsearch.hppc.IntObjectHashMap;
+import com.carrotsearch.hppc.IntHashSet;
 import com.clearnlp.component.AbstractComponent;
 import com.clearnlp.constituent.CTLibEn;
 import com.clearnlp.constituent.CTNode;
@@ -136,10 +136,10 @@ public class C2DConvertMulti extends AbstractRun
 		else if (inputPath.endsWith(parseExt))
 		{
 			System.out.println(inputPath);
-			IntObjectOpenHashMap<List<PBInstance>>    mProp   = null;
-			IntObjectOpenHashMap<List<StringIntPair>> mSense  = null;
-			IntObjectOpenHashMap<List<StringIntPair>> mVclass = null;
-			IntObjectOpenHashMap<List<String>>        mName   = null;
+			IntObjectHashMap<List<PBInstance>>    mProp   = null;
+			IntObjectHashMap<List<StringIntPair>> mSense  = null;
+			IntObjectHashMap<List<StringIntPair>> mVclass = null;
+			IntObjectHashMap<List<String>>        mName   = null;
 			
 			try
 			{
@@ -198,7 +198,7 @@ public class C2DConvertMulti extends AbstractRun
 	
 	public DEPTree getDEPTreeWithoutEdited(CTTree cTree, DEPTree dTree)
 	{
-		IntOpenHashSet set = new IntOpenHashSet();
+		IntHashSet set = new IntHashSet();
 		addEditedTokensAux(cTree.getRoot(), set);
 		int i, j, size = dTree.size();
 		DEPTree tree = new DEPTree();
@@ -219,7 +219,7 @@ public class C2DConvertMulti extends AbstractRun
 		return (tree.size() == 1) ? null : tree;
 	}
 	
-	private void addEditedTokensAux(CTNode curr, IntOpenHashSet set)
+	private void addEditedTokensAux(CTNode curr, IntHashSet set)
 	{
 		for (CTNode child : curr.getChildren())
 		{
@@ -235,7 +235,7 @@ public class C2DConvertMulti extends AbstractRun
 		}
 	}
 	
-	private <T extends DEPArc>void removeEditedHeads(List<T> heads, IntOpenHashSet set)
+	private <T extends DEPArc>void removeEditedHeads(List<T> heads, IntHashSet set)
 	{
 		List<T> remove = Lists.newArrayList();
 		
@@ -248,10 +248,10 @@ public class C2DConvertMulti extends AbstractRun
 		heads.removeAll(remove);
 	}
 	
-	private IntObjectOpenHashMap<List<PBInstance>> getPBInstances(String propFile)
+	private IntObjectHashMap<List<PBInstance>> getPBInstances(String propFile)
 	{
 		if (!new File(propFile).isFile())	return null;
-		IntObjectOpenHashMap<List<PBInstance>> map = new IntObjectOpenHashMap<List<PBInstance>>();
+		IntObjectHashMap<List<PBInstance>> map = new IntObjectHashMap<List<PBInstance>>();
 		List<PBInstance> list;
 		
 		for (PBInstance inst : PBLib.getPBInstanceList(propFile))
@@ -368,10 +368,10 @@ public class C2DConvertMulti extends AbstractRun
 			initPBArgs(child);
 	}
 	
-	private IntObjectOpenHashMap<List<StringIntPair>> getWordSenses(String senseFile) throws Exception
+	private IntObjectHashMap<List<StringIntPair>> getWordSenses(String senseFile) throws Exception
 	{
 		if (!new File(senseFile).isFile())	return null;
-		IntObjectOpenHashMap<List<StringIntPair>> map = new IntObjectOpenHashMap<List<StringIntPair>>();
+		IntObjectHashMap<List<StringIntPair>> map = new IntObjectHashMap<List<StringIntPair>>();
 		BufferedReader fin = UTInput.createBufferedFileReader(senseFile);
 		List<StringIntPair> list;
 		String line, sense;
@@ -400,10 +400,10 @@ public class C2DConvertMulti extends AbstractRun
 		return map;
 	}
 	
-	private IntObjectOpenHashMap<List<StringIntPair>> getVerbClasses(String vclassFile) throws Exception
+	private IntObjectHashMap<List<StringIntPair>> getVerbClasses(String vclassFile) throws Exception
 	{
 		if (!new File(vclassFile).isFile())	return null;
-		IntObjectOpenHashMap<List<StringIntPair>> map = new IntObjectOpenHashMap<List<StringIntPair>>();
+		IntObjectHashMap<List<StringIntPair>> map = new IntObjectHashMap<List<StringIntPair>>();
 		BufferedReader fin = UTInput.createBufferedFileReader(vclassFile);
 		List<StringIntPair> list;
 		String line, vclass;
@@ -432,10 +432,10 @@ public class C2DConvertMulti extends AbstractRun
 		return map;
 	}
 	
-	private IntObjectOpenHashMap<List<String>> getNames(String nameFile) throws Exception
+	private IntObjectHashMap<List<String>> getNames(String nameFile) throws Exception
 	{
 		if (!new File(nameFile).isFile())	return null;
-		IntObjectOpenHashMap<List<String>> map = new IntObjectOpenHashMap<List<String>>();
+		IntObjectHashMap<List<String>> map = new IntObjectHashMap<List<String>>();
 		BufferedReader fin = UTInput.createBufferedFileReader(nameFile);
 		List<String> list;
 		int treeId, i;

@@ -49,7 +49,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.carrotsearch.hppc.IntOpenHashSet;
+import com.carrotsearch.hppc.IntHashSet;
 import com.clearnlp.constituent.CTLibEn;
 import com.clearnlp.dependency.factory.DefaultDEPNodeDatumFactory;
 import com.clearnlp.dependency.factory.IDEPNodeDatum;
@@ -996,15 +996,15 @@ public class DEPNode extends NERNode implements Comparable<DEPNode>
 			getSubNodeCollectionAux(col, arc.getNode());
 	}
 	
-	public IntOpenHashSet getSubIdSet()
+	public IntHashSet getSubIdSet()
 	{
-		IntOpenHashSet set = new IntOpenHashSet();
+		IntHashSet set = new IntHashSet();
 		
 		getSubIdSetAux(set, this);
 		return set;
 	}
 
-	private void getSubIdSetAux(IntOpenHashSet set, DEPNode curr)
+	private void getSubIdSetAux(IntHashSet set, DEPNode curr)
 	{
 		set.add(curr.id);
 		
@@ -1019,7 +1019,7 @@ public class DEPNode extends NERNode implements Comparable<DEPNode>
 	 */
 	public int[] getSubIdArray()
 	{
-		IntOpenHashSet set = getSubIdSet();
+		IntHashSet set = getSubIdSet();
 		int[] list = set.toArray();
 		Arrays.sort(list);
 		

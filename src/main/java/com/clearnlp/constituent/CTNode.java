@@ -49,7 +49,7 @@ import java.util.StringTokenizer;
 import java.util.TreeSet;
 
 import com.carrotsearch.hppc.IntArrayList;
-import com.carrotsearch.hppc.IntOpenHashSet;
+import com.carrotsearch.hppc.IntHashSet;
 import com.clearnlp.conversion.C2DInfo;
 import com.clearnlp.pattern.PTNumber;
 import com.clearnlp.propbank.PBLoc;
@@ -440,9 +440,9 @@ public class CTNode implements Comparable<CTNode>
 		return list;
 	}
 	
-	public IntOpenHashSet getSubTerminalIdSet()
+	public IntHashSet getSubTerminalIdSet()
 	{
-		IntOpenHashSet set = new IntOpenHashSet();
+		IntHashSet set = new IntHashSet();
 		
 		for (CTNode node : getSubTerminals())
 			set.add(node.getTerminalId());

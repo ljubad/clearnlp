@@ -46,7 +46,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.List;
 
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import com.clearnlp.util.pair.ObjectIntPair;
 import com.google.common.collect.Lists;
@@ -55,7 +54,7 @@ import com.google.common.collect.Lists;
  * @since 1.4.2
  * @author Jinho D. Choi ({@code jdchoi77@gmail.com})
  */
-public class ObjectIntHashMap<T> extends ObjectIntOpenHashMap<T> implements Serializable
+public class ObjectIntHashMap<T> extends com.carrotsearch.hppc.ObjectIntHashMap<T> implements Serializable
 {
 	private static final long serialVersionUID = 7069282868294267610L;
 	

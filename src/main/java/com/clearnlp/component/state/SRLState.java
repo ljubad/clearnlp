@@ -43,7 +43,7 @@ package com.clearnlp.component.state;
 import java.util.List;
 import java.util.Map;
 
-import com.carrotsearch.hppc.IntOpenHashSet;
+import com.carrotsearch.hppc.IntHashSet;
 import com.clearnlp.classification.feature.FtrToken;
 import com.clearnlp.classification.feature.JointFtrXml;
 import com.clearnlp.dependency.DEPArc;
@@ -67,7 +67,7 @@ public class SRLState extends DefaultState
 	PBRoleset      p_roleset;
 	DEPNode        d_lca;
 	List<String>   l_argns;
-	IntOpenHashSet s_skip;
+	IntHashSet s_skip;
 	Map<String,ObjectDoublePair<DEPNode>> m_argns;
 	Map<String,ObjectDoublePair<DEPNode>> m_refs;
 
@@ -81,7 +81,7 @@ public class SRLState extends DefaultState
 		
 		d_tree  = tree;
 		i_pred  = 0;
-		s_skip  = new IntOpenHashSet();
+		s_skip  = new IntHashSet();
 		l_argns = Lists.newArrayList();
 		m_argns = Maps.newHashMap();
 		m_refs  = Maps.newHashMap();

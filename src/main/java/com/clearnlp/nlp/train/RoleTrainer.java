@@ -42,7 +42,7 @@ package com.clearnlp.nlp.train;
 
 import org.w3c.dom.Element;
 
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
+import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.clearnlp.classification.feature.JointFtrXml;
 import com.clearnlp.classification.model.StringModel;
 import com.clearnlp.classification.train.StringTrainSpace;
@@ -81,7 +81,7 @@ public class RoleTrainer extends AbstractNLPTrainer
 	@Override
 	protected StringTrainSpace[] getStringTrainSpaces(JointFtrXml[] xmls, Object[] lexica, int boot)
 	{
-		return getStringTrainSpaces(xmls[0], ((ObjectIntOpenHashMap<String>)lexica[1]).size());
+		return getStringTrainSpaces(xmls[0], ((ObjectIntHashMap<String>)lexica[1]).size());
 	}
 	
 	@Override

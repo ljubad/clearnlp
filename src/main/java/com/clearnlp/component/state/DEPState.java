@@ -45,7 +45,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.carrotsearch.hppc.IntOpenHashSet;
+import com.carrotsearch.hppc.IntHashSet;
 import com.clearnlp.classification.feature.FtrToken;
 import com.clearnlp.classification.feature.JointFtrXml;
 import com.clearnlp.classification.instance.StringInstance;
@@ -78,7 +78,7 @@ public class DEPState extends DefaultState implements IDEPLabel
 	int			     	 i_beta;
 	int           n_trans;
 	double        d_score;
-	IntOpenHashSet       s_reduce;
+	IntHashSet       s_reduce;
 	
 	public DEPState(DEPTree tree)
 	{
@@ -96,7 +96,7 @@ public class DEPState extends DefaultState implements IDEPLabel
 	 	l_states   = Lists.newArrayList();
 		l_2ndHeads = Lists.newArrayList();
 	 	n_2ndPos   = new double[t_size];
-	 	s_reduce   = new IntOpenHashSet();
+	 	s_reduce   = new IntHashSet();
 	 	
 	 	int i; for (i=0; i<t_size; i++)
 	 		l_2ndHeads.add(new ArrayList<DEPHead>());
@@ -524,7 +524,7 @@ public class DEPState extends DefaultState implements IDEPLabel
 		int             beta;
 		int             trans;
 		double          score;
-		IntOpenHashSet  reduce;
+		IntHashSet  reduce;
 		StringIntPair[] heads;
 		DEPLabel        label;
 		

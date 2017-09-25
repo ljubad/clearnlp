@@ -53,7 +53,7 @@ import java.util.Random;
 import org.apache.log4j.Logger;
 
 import com.carrotsearch.hppc.IntArrayList;
-import com.carrotsearch.hppc.IntIntOpenHashMap;
+import com.carrotsearch.hppc.IntIntHashMap;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 import com.clearnlp.classification.instance.IntInstance;
 import com.clearnlp.classification.instance.StringInstance;
@@ -121,7 +121,7 @@ public class StringModelAD implements Serializable
 	public void trimFeatures(Logger log, float threshold)
 	{
 		FloatArrayList tWeights = new FloatArrayList(f_weights.size());
-		IntIntOpenHashMap map = new IntIntOpenHashMap();
+		IntIntHashMap map = new IntIntHashMap();
 		ObjectIntHashMap<String> m;
 		int i, j, tFeatures = 1;
 		boolean trim;

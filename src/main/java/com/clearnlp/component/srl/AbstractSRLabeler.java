@@ -47,7 +47,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 
-import com.carrotsearch.hppc.IntOpenHashSet;
+import com.carrotsearch.hppc.IntHashSet;
 import com.clearnlp.classification.feature.FtrToken;
 import com.clearnlp.classification.feature.JointFtrXml;
 import com.clearnlp.classification.instance.StringInstance;
@@ -360,7 +360,7 @@ abstract public class AbstractSRLabeler extends AbstractStatisticalComponent<SRL
 		labelDown(head.getDependents(), state);
 	}
 	
-	/** Called by {@link AbstractSRLabeler#labelAux(DEPNode, IntOpenHashSet)}. */
+	/** Called by {@link AbstractSRLabeler#labelAux(DEPNode, IntHashSet)}. */
 	private void labelDown(List<DEPArc> arcs, SRLState state)
 	{
 		DEPNode pred = state.getCurrentPredicate();

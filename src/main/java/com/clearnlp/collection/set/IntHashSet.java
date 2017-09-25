@@ -45,29 +45,22 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import com.carrotsearch.hppc.IntOpenHashSet;
-
 /**
  * @since 2.0.0
  * @author Jinho D. Choi ({@code jdchoi77@gmail.com})
  */
-public class IntHashSet extends IntOpenHashSet implements Serializable
+public class IntHashSet extends com.carrotsearch.hppc.IntHashSet implements Serializable
 {
 	private static final long serialVersionUID = 9191549668736463520L;
 
 	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
 	{
-		addAll((int[])in.readObject());
+		for (int item : (int[])in.readObject())
+			add(item);
 	}
 
 	private void writeObject(ObjectOutputStream o) throws IOException
 	{
 		o.writeObject(toArray());
-	}
-	
-	public void addAll(int[] array)
-	{
-		for (int item : array)
-			add(item);
 	}
 }

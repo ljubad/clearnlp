@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.zip.GZIPOutputStream;
 
-import com.carrotsearch.hppc.ObjectIntOpenHashMap;
+import com.carrotsearch.hppc.ObjectIntHashMap;
 import com.carrotsearch.hppc.cursors.ObjectCursor;
 
 /**
@@ -135,7 +135,7 @@ public class UTOutput
 		}
 	}
 
-	static public void printMap(PrintStream fout, ObjectIntOpenHashMap<String> map, String delim)
+	static public void printMap(PrintStream fout, ObjectIntHashMap<String> map, String delim)
 	{
 		StringBuilder build;
 		fout.println(map.size());
